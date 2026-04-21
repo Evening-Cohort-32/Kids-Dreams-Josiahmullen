@@ -9,9 +9,10 @@ Time to assess how well you have learned to use the debugging tools in Chrome De
 1. When the kid name is clicked, it should display their wish.
 1. When the celebrity name is clicked, it should display their sport.
 1. The pairings list should should contain the pairing in the following format.
-    ```html
-    {child name} will be making memories with {celebrity name}, a {celebrity sport} star, by {child wish}
-    ```
+   ```html
+   {child name} will be making memories with {celebrity name}, a {celebrity
+   sport} star, by {child wish}
+   ```
 
 Below is an animation showing how the application should look when complete and how the event listeners should work.
 
@@ -35,10 +36,23 @@ Make sure your Developer Tools are open at all times while working on this proje
 Before you click the "Complete Assessment" button on the Learning Platform, add your answers below each question and make a commit.
 
 1. When a child is clicked on in the browser, which module contains the code that will execute on that event happening? Can you explain the algorithm of that logic?
-   > Your answer here
+
+   > Main.js will, the app's HTML lists kids as <li> elements created by Kids.js. Each <li> includes data attributes: data-id, data-type="child", and data-wish. the main.js installs a document level click handler that runs when any element is clicked, the handler reads event.target, checks "event.target.dataset && event.target.dataset.type === "child" " and if true reads event.target.dataset.wish.
+   > after it calls window.alert(wish) to display the child's wish.
+
 2. In the **Pairings** module, why must the `findCelebrityMatch()` function be invoked inside the `for..of` loop that iterates the kids array?
-   > Your answer here
+
+   > It must be invoked inside the for..of loop because each kid needs its own celebrity lookup using that kid's celebrityId. Calling it once outside the loop would not produce a per-kid match, instead you'd have the same celebrity for every kid.
+
 3. In the **CelebrityList** module, can you describe how the name of the sport that the celebrity plays can be displayed in the window alert text?
-   > Your answer here
+   > The sport is shown by the delegated click listener in main.js: when a celebrity <li> with data-type="celebrity" is clicked, the listener reads element.dataset.sport and calls window.alert() with that value.
 4. Can you describe, in detail, the algorithm that is in the `main` module?
-   > Your answer here
+   > It does 4 things:
+
+Gathers pieces, imports 3 helper modules that each make a chunk of HTML (Kids list, Celebrities list, Pairings list)
+
+Builds the page, calls those helpers and stitches all the HTML together into one big template
+
+Puts it on the screen, inserts the finished HTML into the webpage into an #container element
+
+Listens for clicks, sets up click listeners so when someone clicks on a kid or celebrity, something happens

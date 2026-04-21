@@ -19,8 +19,29 @@ const applicationHTML = `
 
     <article class="assignments">
         <h2>Pairings</h2>
+        ${Pairings()}
     </article>
 `
 
 mainContainer.innerHTML = applicationHTML
+
+// show a child's wish when their name is clicked (event delegation)
+document.addEventListener("click", (event) => {
+    const target = event.target
+
+    if (target.dataset && target.dataset.type === "child") {
+        const wish = target.dataset.wish
+        window.alert(wish)
+    }
+})
+
+// show a celebrity's sport when their name is clicked
+document.addEventListener("click", (event) => {
+    const target = event.target
+
+    if (target.dataset && target.dataset.type === "celebrity") {
+        const sport = target.dataset.sport
+        window.alert(sport)
+    }
+})
 
